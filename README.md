@@ -1,5 +1,5 @@
 # pyplot4j
-A nice **static** java wrapper for matplotlib.pyplot
+A nice __static__ java wrapper for matplotlib.pyplot
 
 ## Introduction
 
