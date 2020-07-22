@@ -2,6 +2,7 @@ package examples;
 
 import java.util.Arrays;
 
+import pyplot4j.style.LegendLocation;
 import pyplot4j.util.MathUtils;
 import pyplot4j.xy.XYPlot;
 import pyplot4j.xy.XYSubPlot;
@@ -18,7 +19,7 @@ public class Example2 {
 		// step 1
 		XYSubPlot plt = new XYSubPlot() ;
 		plt.subplot(2, 2, 1).grid(true).xlabel("x values").ylabel("y1 values").title("first subplot!!")
-		   .legend(true)
+		   .legend(true, LegendLocation.upperRight)
 		   .plot(x, y1).color("b").linestyle("-").linewidth(2.0).label("y=sin(x)") ;
 		// step 2
 		XYPlot subplot = plt.subplot(2, 2, 3).grid(false).xlabel("x values").ylabel("y2 values").title("second subplot!!").legend(true) ;
