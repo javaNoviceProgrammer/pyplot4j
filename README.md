@@ -16,7 +16,20 @@ The original documentation of **matplotlib** can be found here: [Matplotlib Docu
 * XYSubPlot
    * this is similar to executing _plt.subplot(row, column, index)_ first and then _plt.plot(x, y, *args, **kwargs)_ in _matplotlib_.
 * PolarPlot
+   * this is similar to executing a plot with _projection='polar'_ keyword argument.
 * ContourPlot
+   * this is similar to executing _plt.contour(X, Y, Z, labels=[])_. The contour labels can be set in a similar way to _plt.clabel(**kwargs)_.
+   An interface called "MeshGrid.java" is provided to generate the Z data points.
+   ```java
+   public interface MeshGrid {
+	double value(double x, double y) ;
+	}
+   ```
+
+
+## Visual Guide to Matplotlib
+
+![visual guide of plot](./src/resources/pic2.png)
 
 ## XYPlot
 
