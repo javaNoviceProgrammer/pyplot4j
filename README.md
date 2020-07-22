@@ -1,5 +1,5 @@
 # pyplot4j
-A nice __static__ java wrapper for matplotlib.pyplot
+A nice and easy-to-use __static__ java wrapper for matplotlib.pyplot
 
 ## Introduction
 
@@ -60,6 +60,7 @@ plt.plot(x, y2).color("r").linestyle("--").linewidth(2.0).label("y=cos(x)") ;
 ```java
 // step 3
 plt.xlabel("X values").ylabel("Y values").legend(true).grid(true) ;
+plt.tightLayout() ;
 ```
 
 * Step 4: finally, we can either "show()" the plot or save it a file "savefig(file_name)".
@@ -73,7 +74,11 @@ Here's the result:
 ![examlpe of xy plot](./src/resources/pic1.png)
 
 ## XYSubPlot
+Simplar steps can be taken to create subplots of multiple figures. See __Example2.java__ for more details.
 
+Here's an example:
+
+![examlpe of xy plot](./src/resources/pic3.png)
 
 ## PolarPlot
 

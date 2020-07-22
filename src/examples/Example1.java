@@ -19,6 +19,7 @@ public class Example1 {
 		plt.plot(x, y2).color("r").linestyle("--").linewidth(3.0).label("y=cos(x)") ;
 		// step 3
 		plt.xlabel("X values").ylabel("Y values").legend(true).grid(true) ;
+		plt.tightLayout() ;
 		// step 4
 		plt.show();
 
