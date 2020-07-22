@@ -62,7 +62,13 @@ plt.plot(x, y2).color("r").linestyle("--").linewidth(2.0).label("y=cos(x)") ;
 plt.xlabel("X values").ylabel("Y values").legend(true).grid(true) ;
 ```
 
-Here's an example:
+* Step 4: finally, we can either "show()" the plot or save it a file "savefig(file_name)".
+```java
+// step 4
+plt.show();
+```
+
+Here's the result:
 
 ![examlpe of xy plot](./src/resources/pic1.png)
 
