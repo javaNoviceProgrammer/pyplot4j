@@ -9,6 +9,9 @@ A nice static java wrapper for matplotlib.pyplot
 
 ## XYPlot
 
+Here's an example:
+
+![examlpe of xy plot](./src/resources/pic1.png)
 
 ## XYSubPlot
 
