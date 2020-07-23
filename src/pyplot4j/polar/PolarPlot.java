@@ -13,7 +13,6 @@ import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
 
 
-
 public class PolarPlot {
 
 	/*
@@ -51,8 +50,8 @@ public class PolarPlot {
 		this(null) ;
 	}
 
-	public PolarSeries plot(double[] r, double[] theta) {
-		PolarSeries polarSeries = new PolarSeries(r, theta) ;
+	public PolarSeries plot(double[] theta, double[] r) {
+		PolarSeries polarSeries = new PolarSeries(theta, r) ;
 		polarSeries.setRvar("r"+count).setThetaVar("theta"+count) ;
 		polarSeriesCollection.add(polarSeries) ;
 		++count ;
@@ -189,12 +188,12 @@ public class PolarPlot {
 		fo.println();
 		// for each xy series, write the data
 		for(PolarSeries series: polarSeriesCollection) {
-			// print x
+			// print r
 			fo.print(series.rvar + " = [");
 			fo.printcomma(series.r);
 			fo.print("];") ;
 			fo.println();
-			// print y
+			// print theta
 			fo.print(series.thetavar + " = [");
 			fo.printcomma(series.theta);
 			fo.print("];") ;

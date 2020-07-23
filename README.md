@@ -1,6 +1,8 @@
 # pyplot4j
 A nice and easy-to-use __static__ java wrapper for matplotlib.pyplot
 
+**Static** means the generated plot window runs on a _python_ process, hence it cannot be dynamically included in a Java GUI such as JPanel or JFrame.
+
 ## Introduction
 
 The plotting library of _matplotlib_ is one the most powerful and easy to use libraries ever created.
@@ -9,6 +11,8 @@ To this end, this repository aims at providing a java framework that can easily 
 After the python code is generated, the framework will execute a terminal (commandline) command **"python file_name.py"** and a window will open with the drawn plots.
 
 The original documentation of **matplotlib** can be found here: [Matplotlib Documentation](https://matplotlib.org/Matplotlib.pdf)
+
+REQUIREMENTS: this framework requires the installation of _python 2_ or _python 3_ and the _matplotlib_ package.
 
 ## Current Capabilities
 * XYPlot
@@ -28,7 +32,7 @@ The original documentation of **matplotlib** can be found here: [Matplotlib Docu
 
 ## Visual Guide to Matplotlib
 
-![visual guide of plot](./src/resources/pic2.png)
+<img src="./src/resources/pic2.png" width="500" />
 
 ## XYPlot
 As the name suggests, this provides a simple API to draw plots in XY cartesian coordinates.
@@ -71,7 +75,8 @@ plt.show();
 
 Here's the result:
 
-![examlpe of xy plot](./src/resources/pic1.png)
+<img src="./src/resources/pic1.png" width="500" />
+
 
 ## XYSubPlot
 Simplar steps can be taken to create subplots of multiple figures. See __Example2.java__ for more details.
@@ -103,8 +108,78 @@ plt.show();
 ![examlpe of xy plot](./src/resources/pic3.png)
 
 ## PolarPlot
+This plot is very similar to XYPlot, except it uses _plt.subplot(1, 1, 1, polar=True)_ command to generate a polar plot.
+Note that the order of parameters is _theta_ and _r_.
 
+See **Exampe3.java** for more info.
+
+```java
+// step 0
+double[] theta = MathUtils.linspace(-2.0*Math.PI, 2.0*Math.PI, 1000) ;
+double[] r1 = Arrays.stream(theta).map(t -> abs(sin(t))).toArray() ;
+double[] r2 = Arrays.stream(theta).map(t -> abs(cos(t))).toArray() ;
+// step 1
+PolarPlot plt = new PolarPlot("A polar plot from java!!!!") ;
+plt.plot(theta, r1).color("b").linestyle("-").linewidth(2.0).label("y=sin(x)") ;
+// step 2
+plt.plot(theta, r2).color("r").linestyle("--").linewidth(3.0).label("y=cos(x)") ;
+// step 3
+plt.tightLayout() ;
+// step 4
+plt.show();
+```
+
+Here's the result:
+
+<img src="./src/resources/pic4.png" width="500" />
 
 ## ContourPlot
+The contour plot can draw contours (unfilled or filled) of a two-dimensional function using _plt.contour(X,Y,Z)_ or _plt.contourf(X,Y,Z)_. The contour levels can be set automatically, or passing them as a parameter, or by clicking on the drawn contours (_manual mode_).
+Let's plot the contours z=sin(x)cos(y) over the [-2pi,2pi]x[-pi,pi] region.
+
+* Step 1: create the x, y data.
+
+```java
+// step 1
+double[] x = MathUtils.linspace(-2.0*PI, 2.0*PI, 200) ;
+double[] y = MathUtils.linspace(-PI, PI, 100) ;
+```
+
+* Step 2: create z data using _MeshGrid_ interface.
+   * Note that we don't need to calculate the z values. We just pass the meshgrid function to the plot.
+
+```java
+// step 2
+MeshGrid grid = (xi, yj) -> sin(xi)*cos(yj) ;
+```
+
+* Step 3: create the contour plot and specify the contour levels
+
+```java
+// step 3
+ContourPlot plt = new ContourPlot("A contour plot from java!!!") ;
+plt.contour(x, y, grid)
+   .clabel().levels(MathUtils.linspace(-1.0, 1.0, 15))
+   .color("r").fmt("%.2f");
+```
+
+* Step 4: add xlabel, ylabel and turn the grid on.
+
+```java
+// step 4
+plt.xlabel("x values").ylabel("y values").grid(true, "major", "both") ;
+```
+
+* Step 5: finally, show the plot or save it to a file.
+
+```java
+// step 5
+plt.show();
+```
+
+Here's the result:
+
+<img src="./src/resources/pic5.png" width="500" />
+
 
 

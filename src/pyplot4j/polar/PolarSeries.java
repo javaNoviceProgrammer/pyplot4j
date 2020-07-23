@@ -9,7 +9,6 @@ import pyplot4j.style.LineStyle;
 import pyplot4j.style.Marker;
 
 
-
 public class PolarSeries {
 
 	// data
@@ -40,7 +39,7 @@ public class PolarSeries {
 	String solidCapStyle ;
 	String solidJoinStyle ;
 
-	public PolarSeries(double[] r, double[] theta) {
+	public PolarSeries(double[] theta, double[] r) {
 		this.r = r ;
 		this.theta = theta ;
 	}
@@ -178,14 +177,14 @@ public class PolarSeries {
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
 		sb.append("plt.plot(") ;
-		if(rvar == null)
-			throw new IllegalArgumentException("R variable cannot be NULL") ;
-		else
-			sb.append(rvar+", ") ;
 		if(thetavar == null)
 			throw new IllegalArgumentException("Theta variable cannot be NULL") ;
 		else
-			sb.append(thetavar) ;
+			sb.append(thetavar+",") ;
+		if(rvar == null)
+			throw new IllegalArgumentException("R variable cannot be NULL") ;
+		else
+			sb.append(rvar) ;
 		if(color != null) {
 			sb.append(", ") ;
 			sb.append("color='" + color + "'") ;
