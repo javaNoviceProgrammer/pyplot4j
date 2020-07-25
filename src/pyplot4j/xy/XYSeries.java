@@ -8,7 +8,6 @@ import pyplot4j.style.JoinStyle;
 import pyplot4j.style.LineStyle;
 import pyplot4j.style.Marker;
 
-
 public class XYSeries {
 
 	// data

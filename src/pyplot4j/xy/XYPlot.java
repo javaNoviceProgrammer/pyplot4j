@@ -14,7 +14,6 @@ import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
 
 
-
 public class XYPlot {
 
 	String title = null ;
@@ -41,7 +40,7 @@ public class XYPlot {
 	int count = 1 ;
 	static int id = 0 ;
 	// header
-	boolean isSubplot = false ;
+	public boolean isSubplot = false ;
 
 	public XYPlot(String title) {
 		this.title = title ;
@@ -279,6 +278,7 @@ public class XYPlot {
 			fo.println("if sys_pf == 'darwin':") ;
 			fo.println("\timport matplotlib") ;
 			fo.println("\tmatplotlib.use('TkAgg')") ;
+			fo.println("import numpy as np") ;
 			fo.println("import matplotlib.pyplot as plt");
 			fo.println();
 		}

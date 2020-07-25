@@ -1,6 +1,7 @@
 package pyplot4j.contour;
 
 import static java.lang.String.format ;
+
 import java.util.List;
 
 import pyplot4j.style.Color;

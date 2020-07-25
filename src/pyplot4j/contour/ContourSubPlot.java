@@ -1,4 +1,4 @@
-package pyplot4j.xy;
+package pyplot4j.contour;
 
 import static java.lang.String.format;
 
@@ -12,35 +12,34 @@ import java.util.Map;
 import pyplot4j.util.FileOutput;
 
 
-public class XYSubPlot {
+public class ContourSubPlot {
 
-	List<XYPlot> xyplotSeries ;
-	Map<XYPlot, int[]> subplotIndex ;
+	List<ContourPlot> contourPlotSeries ;
+	Map<ContourPlot, int[]> subplotIndex ;
 	// parameters
 	String tightLayout ;
 	static int id = 0 ;
 
-	public XYSubPlot() {
-		xyplotSeries = new ArrayList<>() ;
+	public ContourSubPlot() {
+		contourPlotSeries = new ArrayList<>() ;
 		subplotIndex = new HashMap<>() ;
 	}
 
-	public XYPlot subplot(int row, int column, int index) {
-		XYPlot xyplot = new XYPlot() ;
-		xyplot.isSubplot = true ;
-		xyplotSeries.add(xyplot) ;
-		subplotIndex.put(xyplot, new int[] {row, column, index}) ;
-		return xyplot ;
+	public ContourPlot subplot(int row, int column, int index) {
+		ContourPlot contourplot = new ContourPlot() ;
+		contourplot.isSubplot = true ;
+		contourPlotSeries.add(contourplot) ;
+		subplotIndex.put(contourplot, new int[] {row, column, index}) ;
+		return contourplot ;
 	}
 
-
-	public XYSubPlot tightLayout() {
+	public ContourSubPlot tightLayout() {
 		this.tightLayout = true ;
 		return this ;
 	}
 
 	public void savefig(String fileName) {
-		if(xyplotSeries.isEmpty())
+		if(contourPlotSeries.isEmpty())
 			throw new IllegalStateException("SubPlots data is empty") ;
 		// open the output stream
 		int index = fileName.lastIndexOf('.') ;
@@ -61,7 +60,7 @@ public class XYSubPlot {
 	}
 
 	public void show(String fileName) {
-		if(xyplotSeries.isEmpty())
+		if(contourPlotSeries.isEmpty())
 			throw new IllegalStateException("SubPlots data is empty") ;
 		// open the output stream
 		FileOutput fo = new FileOutput(fileName) ;
@@ -80,7 +79,7 @@ public class XYSubPlot {
 	}
 
 	public void show() {
-		if(xyplotSeries.isEmpty())
+		if(contourPlotSeries.isEmpty())
 			throw new IllegalStateException("SubPlots data is empty") ;
 		// open the output stream
 		File file = new File("fig"+(id++)) ;
@@ -110,10 +109,11 @@ public class XYSubPlot {
 		fo.println("if sys_pf == 'darwin':") ;
 		fo.println("\timport matplotlib") ;
 		fo.println("\tmatplotlib.use('TkAgg')") ;
+		fo.println("import numpy as np") ;
 		fo.println("import matplotlib.pyplot as plt");
 		fo.println();
-		// for each xy series, write the data
-		for(XYPlot series: xyplotSeries) {
+		// for each contour series, write the data
+		for(ContourPlot series: contourPlotSeries) {
 			// print subplot command
 			int[] vals = subplotIndex.get(series) ;
 			fo.println(format("plt.subplot(%d, %d, %d)", vals[0], vals[1], vals[2]));

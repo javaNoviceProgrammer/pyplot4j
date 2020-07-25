@@ -1,12 +1,13 @@
 package pyplot4j.contour;
 
+import static java.lang.String.format;
+
 import java.util.Arrays;
 import java.util.List;
 
+import pyplot4j.style.Color;
 import pyplot4j.style.ColorMap;
 import pyplot4j.style.LineStyle;
-
-import static java.lang.String.format;
 
 
 public class ContourSeries {
@@ -25,6 +26,7 @@ public class ContourSeries {
 	boolean cornerMask ;
 	double alpha = 1.0 ;
 	String colorMap ;
+	String color ;
 	boolean antialiased = true ;
 	double linewidth = 1.5 ;
 	String linestyle ;
@@ -48,6 +50,13 @@ public class ContourSeries {
 		this.clabel = new ContourLabel("") ;
 	}
 
+	public ContourSeries(double[] x, double[] y, double[][] z) {
+		this.x = x ;
+		this.y = y ;
+		this.func = null ;
+		this.z = z ;
+		this.clabel = new ContourLabel("") ;
+	}
 
 	public ContourSeries setXData(double[] x) {
 		this.x = x ;
@@ -126,6 +135,15 @@ public class ContourSeries {
 		return this ;
 	}
 
+	public ContourSeries color(String color) {
+		this.color = (color!=null) ? color.trim() : null ;
+		return this ;
+	}
+
+	public ContourSeries color(Color color) {
+		this.color = (color!=null) ? color.toString().trim() : null ;
+		return this ;
+	}
 
 	public ContourLabel clabel() {
 		return clabel ;
@@ -183,11 +201,14 @@ public class ContourSeries {
 			sb.append(", ") ;
 			sb.append(format("antialiased=%s", "False")) ;
 		}
+		if(color != null) {
+			sb.append(", ") ;
+			sb.append(format("colors='%s'", color)) ;
+		}
 		if(colorMap != null) {
 			sb.append(", ") ;
 			sb.append(format("cmap='%s'", colorMap)) ;
 		}
-
 
 		sb.append(")\n") ;
 		// clable style options
