@@ -29,6 +29,8 @@ REQUIREMENTS: this framework requires the installation of _python 2_ or _python 
 	double value(double x, double y) ;
 	}
    ```
+* ContourSubPlot
+   * this is similar to having multiple subplots each one drawing contour plots.
 
 ## Visual Guide to Matplotlib
 
