@@ -266,7 +266,14 @@ public class XYPlot {
 			rt.exec("python " + fo.getFilename()) ;
 			Thread.sleep(100L);
 		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				rt.exec("python3 " + fo.getFilename()) ;
+				Thread.sleep(100L);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
