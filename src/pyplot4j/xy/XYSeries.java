@@ -55,6 +55,15 @@ public class XYSeries {
 		this.linewidth = linewidth ;
 	}
 
+	public XYSeries(double[] x, double[] y) {
+		this.x = x ;
+		this.y = y ;
+	}
+
+	public XYSeries() {
+
+	}
+
 	public XYSeries setXData(double[] x) {
 		this.x = x ;
 		return this ;

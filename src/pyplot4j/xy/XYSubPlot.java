@@ -1,7 +1,6 @@
 package pyplot4j.xy;
 
 import static java.lang.String.format;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

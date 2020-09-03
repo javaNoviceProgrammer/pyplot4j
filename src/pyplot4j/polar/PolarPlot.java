@@ -9,8 +9,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
+import pyplot4j.style.LegendLocation;
+
 
 
 public class PolarPlot {
@@ -39,7 +40,9 @@ public class PolarPlot {
 	// data
 	ArrayList<PolarSeries> polarSeriesCollection ;
 	int count = 1 ;
+	boolean isSubplot = false ;
 	static int id = 0 ;
+
 
 	public PolarPlot(String title) {
 		this.title = title ;
@@ -178,14 +181,16 @@ public class PolarPlot {
 
 	}
 
-	private void pythonCode(FileOutput fo) {
-		fo.println("from sys import platform as sys_pf") ;
-		fo.println("if sys_pf == 'darwin':") ;
-		fo.println("\timport matplotlib") ;
-		fo.println("\tmatplotlib.use('TkAgg')") ;
-		fo.println("import matplotlib.pyplot as plt");
-		fo.println("\nplt.subplot(1, 1, 1, polar=True)");
-		fo.println();
+	void pythonCode(FileOutput fo) {
+		if(!isSubplot) {
+			fo.println("from sys import platform as sys_pf") ;
+			fo.println("if sys_pf == 'darwin':") ;
+			fo.println("\timport matplotlib") ;
+			fo.println("\tmatplotlib.use('TkAgg')") ;
+			fo.println("import matplotlib.pyplot as plt");
+			fo.println("\nplt.subplot(1, 1, 1, polar=True)");
+			fo.println();
+		}
 		// for each xy series, write the data
 		for(PolarSeries series: polarSeriesCollection) {
 			// print r

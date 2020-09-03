@@ -2,7 +2,7 @@ package pyplot4j.style;
 
 public enum PlotStyle {
 
-	seabonTicks("seaborn-ticks") ,
+	seabornTicks("seaborn-ticks") ,
 	ggplot("ggplot") ,
 	darkBackground("dark_background") ,
 	bmh("bmh") ,

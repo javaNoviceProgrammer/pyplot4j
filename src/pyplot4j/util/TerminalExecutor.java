@@ -10,7 +10,7 @@ public class TerminalExecutor {
 
 	}
 
-	public static void execute(String toolname, String filename, String[] args) {
+	public static void execute(String toolname, String filename, String... args) {
 		// build the command
 		StringBuilder sb = new StringBuilder() ;
 		sb.append(toolname).append(" ") ;
@@ -32,9 +32,14 @@ public class TerminalExecutor {
 			}) ;
 			thread1.start();
 			Thread thread2 = new Thread(() -> {
+				String line = "" ;
 				Scanner error = new Scanner(process.getErrorStream()) ;
 				while(error.hasNext()) {
-					System.err.println(error.nextLine());
+					line = error.nextLine() ;
+					if(line.contains("error"))
+						System.err.println(line);
+					else
+						System.out.println(line);
 				}
 				error.close();
 			}) ;

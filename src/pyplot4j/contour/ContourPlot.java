@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
+import pyplot4j.style.LegendLocation;
 
 
 /**

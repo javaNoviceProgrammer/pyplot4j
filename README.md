@@ -12,7 +12,7 @@ After the python code is generated, the framework will execute a terminal (comma
 
 The original documentation of **matplotlib** can be found here: [Matplotlib Documentation](https://matplotlib.org/Matplotlib.pdf)
 
-REQUIREMENTS: this framework requires the installation of _python 2_ or _python 3_ and the _matplotlib_ package.
+REQUIREMENTS: this framework requires the installation of _python 2_ or _python 3_ and the _matplotlib_ and _numpy_ packages.
 
 ## Current Capabilities
 * XYPlot
