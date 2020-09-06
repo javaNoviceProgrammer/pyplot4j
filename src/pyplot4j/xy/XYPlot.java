@@ -21,8 +21,8 @@ public class XYPlot {
 	String ylabel = null ;
 	boolean grid = false ;
 	boolean cla = false ;
-	String gridWhich = null ;
-	String gridAxis = null ;
+	String gridWhich = "both" ;
+	String gridAxis = "both" ;
 	String xlim = null ;
 	String ylim = null ;
 	// legend
