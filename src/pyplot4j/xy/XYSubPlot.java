@@ -1,14 +1,15 @@
 package pyplot4j.xy;
 
 import static java.lang.String.format;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import pyplot4j.util.FileOutput;
+import pyplot4j.util.TerminalExecutor;
 
 
 public class XYSubPlot {
@@ -51,12 +52,10 @@ public class XYSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show(String fileName) {
@@ -70,12 +69,10 @@ public class XYSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show() {
@@ -90,16 +87,10 @@ public class XYSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-			Thread.sleep(100L);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 

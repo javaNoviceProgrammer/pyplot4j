@@ -1,7 +1,6 @@
 package pyplot4j.util;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 
 public class TerminalExecutor {
@@ -10,7 +9,7 @@ public class TerminalExecutor {
 
 	}
 
-	public static void execute(String toolname, String filename, String... args) {
+	private static void executeCommand(String toolname, String filename, String... args) {
 		// build the command
 		StringBuilder sb = new StringBuilder() ;
 		sb.append(toolname).append(" ") ;
@@ -23,35 +22,18 @@ public class TerminalExecutor {
 		Runtime rt = Runtime.getRuntime() ;
 		try {
 			Process process = rt.exec(sb.toString()) ;
-			Thread thread1 = new Thread(() -> {
-				Scanner result = new Scanner(process.getInputStream()) ;
-				while(result.hasNext()) {
-					System.out.println(result.nextLine());
-				}
-				result.close();
-			}) ;
-			thread1.start();
-			Thread thread2 = new Thread(() -> {
-				String line = "" ;
-				Scanner error = new Scanner(process.getErrorStream()) ;
-				while(error.hasNext()) {
-					line = error.nextLine() ;
-					if(line.contains("error"))
-						System.err.println(line);
-					else
-						System.out.println(line);
-				}
-				error.close();
-			}) ;
-			thread2.start();
-			Thread.sleep(100L);
+			// wait for process
+			process.waitFor() ;
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-
+	public static void execute(String toolname, String filename, String... args) {
+		executeCommand(toolname, filename, args);
+	}
 
 }

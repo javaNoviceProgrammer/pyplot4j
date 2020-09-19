@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 import pyplot4j.util.FileOutput;
 import pyplot4j.style.LegendLocation;
+import pyplot4j.util.TerminalExecutor;
 
 
 public class XYPlot {
@@ -215,12 +216,10 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show(String fileName) {
@@ -237,19 +236,17 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show() {
 		if(xySeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
-		File file = new File("fig"+(id++)) ;
+		File file = new File("xy_plot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
@@ -261,15 +258,10 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-			Thread.sleep(100L);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	void pythonCode(FileOutput fo) {
