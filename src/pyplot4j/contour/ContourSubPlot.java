@@ -77,7 +77,7 @@ public class ContourSubPlot {
 		if(contourPlotSeries.isEmpty())
 			throw new IllegalStateException("SubPlots data is empty") ;
 		// open the output stream
-		File file = new File("fig"+(id++)) ;
+		File file = new File("contour_subplot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);

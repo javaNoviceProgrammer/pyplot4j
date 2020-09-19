@@ -79,7 +79,7 @@ public class XYSubPlot {
 		if(xyplotSeries.isEmpty())
 			throw new IllegalStateException("SubPlots data is empty") ;
 		// open the output stream
-		File file = new File("fig"+(id++)) ;
+		File file = new File("xy_subplot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
